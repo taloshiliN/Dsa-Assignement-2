@@ -6,7 +6,7 @@ public function main() returns error?{
     graphql:Client graphqlClient = check new ("localhost:9090/graphql");
 
     io:println("Welcome to the NUST PERFORMANCE EVALUATION SYSTEM");
-    io:println("Please type the according to your role respectfully");
+    io:println("Please type according to your role respectfully");
     io:println("Head Of Department             :");
     io:println("Supervisor          :");
     io:println("Employee            :");
