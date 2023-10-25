@@ -1,0 +1,5 @@
+USER="root"
+PASSWORD="Black_Bolt_17"
+HOST="localhost"
+PORT=3307
+DATABASE="Management"
