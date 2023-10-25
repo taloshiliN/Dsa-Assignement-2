@@ -50,7 +50,8 @@ type Objectives record{
 };
 @graphql:ServiceConfig{
     graphiql: {
-        enabled: true
+        enabled: true,
+        path: "/Client/graphql"
     }
 }
 
@@ -61,7 +62,6 @@ service /graphql on new graphql:Listener(9090) {
     }
     private Employee profile;
     //FUNCTIONS OF HEAD OF DEPARTMENT
-    
     //CREATE
     remote function CreateDepartmentObjective(Objectives newObjective) returns string|error{
         sql:ExecutionResult result = check self.dbClient->execute(`INSERT INTO head_of_departmemt_Table VALUES (${newObjective.ObjectiveDescription})`);
