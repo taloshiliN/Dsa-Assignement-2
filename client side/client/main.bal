@@ -4,7 +4,7 @@ import ballerina/graphql;
 public function main() returns error?{
     //connect
     string option;
-    graphql:Client graphqlClient = check new ("localhost:9090/graphql");
+    graphql:Client graphqlClient = check new ("localhost:9090/Client");
 
     io:println("Welcome to the NUST PERFORMANCE EVALUATION SYSTEM");
     io:println("Please type according to your role respectfully");
@@ -36,17 +36,17 @@ public function main() returns error?{
             io:println("Assign the Employee to a supervisor  :Assign");
             string choice1=io:readln("Enter here: ");
             if (choice1==="Add"){
-                check ();
+                check CreateDepartmentObjective();
             } else if (choice1=="Get"){
-                check ();
+                check EmployeeScores();
              } else if (choice1=="Remove"){
-                check ();
+                check DeleteDepartmentObjective();
                 } else if (choice1=="Assign"){
                 check ();
             } else {
                 io:println("That is not a keyword");
             }  
-            } 
+            }
     }
         else if option=="Login"{
             //Head of department Login
@@ -59,7 +59,7 @@ public function main() returns error?{
             io:println("Assign the Employee to a supervisor  :Assign");
             string choice1=io:readln("Enter here: ");
             if (choice1==="Add"){
-                check ();
+                check CreateDepartmentObjective();
             } else if (choice1=="Get"){
                 check ();
              } else if (choice1=="Remove"){
@@ -125,12 +125,12 @@ public function main() returns error?{
             } else{
                 io:println("That is not a keyword");
             }            
-        } 
+    } 
         else {
             io:println("Such a command does not exist");
         }
-                  
-    else if (keyword=="Employee"){
+                   
+    if (keyword=="Employee"){
         option=io:readln("Sign Up or log in: ");
         if option=="Sign up"{
             //Employee sign up
@@ -148,11 +148,12 @@ public function main() returns error?{
             } else if(choice2=="Get"){
                 check ();
             }      
-        } else {
+        }   
+            else {
             io:println("Such a command does not exist");
             }   
               }  
-                 else if option=="Login"{
+        else if option=="Login"{
             //Employee Login
             //check AddUser();
             io:println("What do you want to do:");
@@ -168,7 +169,29 @@ public function main() returns error?{
             } else if(choice2=="Get"){
                 check ();
             }      
-        } else {
+        }     else {
             io:println("Such a command does not exist");
     }        
 }
+
+    //Create department objetives
+    function ()returns error?{
+    graphql:Client graphqlClient = check new ("localhost:9090/Q1");
+    int Objective_ID = io:readln("Enter the isbn: ");    
+    string Objective = io:readln("Enter the title: ");
+    string Department_Name = io:readln("Enter the author: ");
+    string Objective_Description = io:readln("Enter the location: ");
+
+    Objective DeleteObjectives   = {title: titl e, authors: authors, location: location, isbn: isbn, status: status};
+    Response addBookResponse = check ep->addBook(addBookRequest);
+    io:println(addBookResponse);
+    }
+
+ //Remove a book
+function RemoveBooks() returns error?{
+    string isbn = io:readln("Enter the ISBN of the book to DELETE");  
+    BookDetails removeBookRequest = {title: "ballerina", authors: "ballerina", location: "ballerina", isbn: isbn, status: "ballerina"};
+    Response removeBookResponse = check ep->removeBook(removeBookRequest);
+    io:println(removeBookResponse);
+    }
+    
